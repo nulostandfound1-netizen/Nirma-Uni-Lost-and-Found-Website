@@ -1,0 +1,572 @@
+<html>
+
+<head>
+    <title>Lost/Found|Nirma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=BBH+Hegarty&family=Basic&family=DM+Serif+Text:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #f1f3f4;
+            overflow: hidden;
+        }
+
+        .top {
+            width: 100vw;
+            height: 10vh;
+            background-color: white;
+            display: grid;
+            grid-template-columns: 6fr 0.7fr 0.7fr 0.7fr;
+            align-items: center;
+            justify-items: center;
+            box-shadow: 5px 0px 10px rgba(65, 65, 65, 0.859);
+        }
+
+        .uni {
+            font-weight: 900;
+            color: red;
+            font-size: 1.7vw;
+        }
+
+        .head {
+            font-weight: 700;
+            color: black;
+            font-size: 1.4vw;
+        }
+
+        .text {
+            height: 100%;
+            width: 25%;
+            text-align: center;
+            justify-content: center;
+            transform: translate(-29vw, 1vh);
+        }
+
+        #dispute {
+            font-size: 2.3vw;
+        }
+
+        #logout {
+            background-color: rgb(225, 225, 225);
+            width: 4vw;
+            font-size: 1.2vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4vh;
+            width: 15vh;
+            border: 3px solid grey;
+            border-radius: 10px;
+            margin: 0 auto;
+            font-weight: 600;
+            font-size: 1.1vw;
+            transition: all 0.2s ease;
+        }
+
+        .middle {
+            height: 17vh;
+            width: 100vw;
+            display: grid;
+            grid-template-rows: 1fr 1fr 2fr;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .wel {
+            font-size: 2vw;
+            font-weight: 800;
+            color: red;
+            margin-top: 1%;
+        }
+
+        .tag {
+            font-size: 1.5vw;
+            font-weight: 600;
+            color: rgb(87, 87, 87);
+        }
+
+        .buttons {
+            height: 7vh;
+            width: 80vw;
+            display: flex;
+            gap: 5vw;
+            margin: auto;
+            justify-content: space-evenly;
+            margin-bottom: 8vh;
+        }
+
+        .lost {
+            background-color: red;
+            color: white;
+            width: 14vw;
+            height: 6vh;
+            font-size: 1.13vw;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid red;
+            border-radius: 5px;
+            margin: 0 auto;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .found {
+            background-color: white;
+            color: red;
+            width: 14vw;
+            height: 6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid red;
+            border-radius: 5px;
+            font-size: 1.13vw;
+            font-weight: 800;
+            margin: 0 auto;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .lost:hover {
+            scale: 1.02;
+            translate: 0px -3px;
+            cursor: pointer;
+            box-shadow: 0px 4px 5px rgb(63, 63, 63);
+        }
+
+        .found:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        #logout:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        table {
+            height: 28%;
+        }
+
+        #userProfilePic {
+            border-radius: 50%;
+        }
+
+        .bottom {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            height: 90vh;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            /* CHANGED: Use Flexbox to manage vertical space */
+            display: flex;
+            flex-direction: column;
+            margin-left: 2%;
+            margin-right: 2%;
+            overflow: hidden;
+            /* Ensures nothing spills out of the grey box */
+        }
+
+
+        /* Update your existing table styles or add this to limit text height */
+        td h3.con {
+            font-size: 0.9vw;
+            /* CHANGED: Allow text to wrap normally */
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 1.4;
+            /* Improve readability for 50 words */
+            text-align: left;
+        }
+
+        .bottom2 {
+            width: 98%;
+            margin: 0 auto;
+            /* CHANGED: flex: 1 makes it take up ONLY the remaining space */
+            flex: 1;
+            overflow-y: auto;
+            /* Scroll ONLY this part */
+            scrollbar-width: none;
+
+            display: grid;
+            /* CHANGED: Use auto-fill to make it responsive */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 320px;
+            /* Slightly reduced height to fit better */
+            gap: 15px;
+            /* Add spacing between cards */
+            padding-bottom: 20px;
+            display: none;
+            /* Keep hidden initially */
+        }
+
+        .bottom2,
+        .bottom1 {
+            width: 98%;
+            margin: 0 auto;
+            display: grid;
+            /* CHANGED: Increased height to 520px to fit long text */
+            grid-auto-rows: 480px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            padding-bottom: 20px;
+        }
+
+        .bottom2 {
+            display: none;
+        }
+
+
+        /* Ensure bottom1 is visible by default if needed, or controlled by JS */
+        .bottom1 {
+            display: grid;
+            /* Or whatever your default state is */
+        }
+
+        .img {
+            height: 60%;
+            width: 60%;
+            align-content: center;
+            object-fit: cover;
+        }
+
+        .table {
+            width: 35vw;
+        }
+
+        .dabba2 {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Pushes button to bottom */
+        }
+
+        .dabba {
+            text-align: center;
+            align-content: center;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            /* CHANGED: Remove fixed height. Use flex: 1 to fill space */
+            height: 45vh;
+
+            width: 93%;
+            margin: 0 auto 10px auto;
+            /* Adds space between white card and button */
+            padding: 10px;
+            /* Add padding so text doesn't touch edges */
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* overflow: hidden; */
+            /* Keeps content inside the rounded corners */
+        }
+
+
+        .OBM {
+            background: linear-gradient(90deg, red, brown);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            height: 10%;
+            width: 50%;
+            margin-bottom: 0;
+            margin: 0 auto;
+        }
+
+        .OBM:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        .report:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        .con {
+            font-size: 1.3vw;
+        }
+
+        #search {
+            margin-left: 37.5vw;
+            padding: 2px;
+            width: 25vw;
+            height: 5vh;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 7px;
+        }
+
+        .back {
+            background-color: rgb(225, 225, 225);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4vh;
+            width: 8vw;
+            font-size: 1.2vw;
+            border: 3px solid grey;
+            border-radius: 10px;
+            margin: 0 auto;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .icon {
+            height: 3.5vw;
+            width: 3.5vw;
+        }
+
+        .back:hover {
+            scale: 1.02;
+            translate: 0px -3px;
+            cursor: pointer;
+            box-shadow: 0px 4px 5px rgb(63, 63, 63);
+        }
+
+        a {
+            text-decoration: none;
+            color: initial;
+        }
+
+        /* Add this new style for the link wrapper */
+        .dabba2 a {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            /* Space from bottom */
+            text-decoration: none;
+            /* Removes underline */
+        }
+
+        /* Update your .OBM button style */
+        .OBM,
+        .report {
+            background: linear-gradient(90deg, red, brown);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+
+            /* CHANGED: Use fixed height/width instead of %. 
+       This prevents it from squishing. */
+            height: 45px;
+            width: 60%;
+
+            /* Remove margins here since the <a> tag handles alignment now */
+            margin: 0;
+            border: none;
+            /* specific for buttons */
+            cursor: pointer;
+        }
+
+        .BTNS {
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div class="text">
+            <h1 class="uni" align="margin-left">Nirma University</h1>
+            <h2 class="head">Lost and Found</h2>
+        </div>
+        <a href="homepage.html">
+            <div class="back"> &lt;- Back</div>
+        </a>
+        <div id="logout">
+            Logout
+        </div>
+        <div class="profile">
+            <a href="profile2.html"> <img class=icon id="userProfilePic"
+                    onerror="this.src='https:\/\/www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2558760599.jpg'"></a>
+        </div>
+    </div>
+    <div class="bottom">
+
+        <h1 id="dispute">Disputed Items</h1>
+        <br>
+        <div class="bottom1">
+
+        </div>
+        <div class="bottom2"></div>
+    </div>
+    <script>
+        let storedPic = localStorage.getItem("pic");
+
+        // Check if pic is empty, "null" (string), "undefined", OR that specific broken link
+        if (!storedPic || storedPic === "null" || storedPic === "undefined" || storedPic.includes("https://lh3.googleusercontent.com/a/ACg8ocIN6M6AAFv1C8eVRiZ_3ICOxvcDudEk7LUqltmf2pltuUkC=s96-c")) {
+
+            document.getElementById("userProfilePic").src = "https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2558760599.jpg";
+            console.log("Default Image Set!");
+
+        } else {
+            // If it's a valid image, use it
+            document.getElementById("userProfilePic").src = storedPic;
+        }
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, set, get, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuXnFXE9KtuzoAhcixtMYBcVtHfYs8OFQ",
+            authDomain: "nu-lost-and-found.firebaseapp.com",
+            projectId: "nu-lost-and-found",
+            storageBucket: "nu-lost-and-found.firebasestorage.app",
+            messagingSenderId: "905343956080",
+            appId: "1:905343956080:web:90f00a87311987e360b0b5",
+            measurementId: "G-Q7738Y3EQ7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase();
+        const logoutButton = document.getElementById('logout');
+
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                alert("You have been signed out.");
+                window.location.href = "LoginPage.html";
+            }).catch((error) => console.error("Logout failed", error));
+        });
+
+        // --- MAIN DISPUTE LOADING FUNCTION ---
+        async function loadDisputedItems() {
+            try {
+                console.log("Starting to load disputed items...");
+
+                // STEP 1: Fetch Interactions to find Disputes
+                // We want to find items that have > 1 person interested
+                const interactionsRef = ref(db, 'Interactions');
+                const interactSnap = await get(interactionsRef);
+
+                let disputedList = [];
+
+                if (interactSnap.exists()) {
+                    interactSnap.forEach((ownerSnapshot) => {
+                        // ownerSnapshot.key is the Founder's Email (safe format)
+                        const ownerEmail = ownerSnapshot.key;
+
+                        ownerSnapshot.forEach((itemSnapshot) => {
+                            // itemSnapshot.key is the Item Name
+                            // itemSnapshot.size is the number of children (people who clicked)
+
+                            // DISPUTE LOGIC: If size > 1, more than 1 person claimed it
+                            if (itemSnapshot.size > 1) {
+                                disputedList.push({
+                                    owner: ownerEmail,
+                                    item: itemSnapshot.key
+                                });
+                                console.log(`Dispute Found: ${itemSnapshot.key} (Owner: ${ownerEmail})`);
+                            }
+                        });
+                    });
+                } else {
+                    console.log("No interactions found in DB.");
+                    return;
+                }
+
+                if (disputedList.length === 0) {
+                    document.querySelector(".bottom1").innerHTML = "<h2 style='text-align:center;'>No disputed items found.</h2>";
+                    return;
+                }
+
+                // STEP 2: Fetch Founders Data to display details
+                const foundersRef = ref(db, 'founders');
+                const foundersSnap = await get(foundersRef);
+
+                if (foundersSnap.exists()) {
+                    foundersSnap.forEach((userSnapshot) => {
+                        const currentOwnerEmail = userSnapshot.key; // e.g. manas@gmail,com
+
+                        userSnapshot.forEach((itemSnapshot) => {
+                            const data = itemSnapshot.val();
+                            const currentItemName = data.item;
+
+                            // STEP 3: Check if this item exists in our disputedList
+                            // We match both the Owner Email AND Item Name to be sure
+                            const isDisputed = disputedList.some(d =>
+                                d.owner === currentOwnerEmail &&
+                                d.item === currentItemName
+                            );
+
+                            if (isDisputed) {
+                                // RENDER THE CARD
+                                document.querySelector(".bottom1").innerHTML += `
+                                <div class="dabba2">
+                                    <div class="dabba">
+                                        <img src="${data.image_url}" class="img" align="center" style="height:120px; width:auto; object-fit:contain; margin-top:10px; margin-bottom : 10px">
+                                        <table style="width:90%; margin-top:10px;">
+                                            <tr>
+                                                <td><h4 align="left" class="con">Item Name:</h4></td>
+                                                <td><h4 align="left" class="con">${data.item}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4 align="left" class="con">Finder:</h4></td>
+                                                <td><h4 align="left" class="con">${data.name}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4 align="left" class="con">Desc:</h4></td>
+                                                <td><h4 align="left" class="con">${data.description}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4 align="left" class="con">Date:</h4></td>
+                                                <td><h4 align="left" class="con">${data.date_found}</h4></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>`;
+                            }
+                        });
+                    });
+
+                    // Fix Grid Layout based on number of items
+                    let count = document.getElementsByClassName("dabba2").length;
+                    if (count > 0) {
+                        document.querySelector(".bottom1").style.gridTemplateRows = "repeat(" + (Math.ceil(count / 4)) + ", 380px)";
+                        document.querySelector(".bottom1").style.display = "grid";
+                    }
+
+                }
+            } catch (error) {
+                console.error("Error loading disputes:", error);
+            }
+        }
+
+        // Run the function immediately
+        loadDisputedItems();
+
+    </script>
+</body>
+
+</html>

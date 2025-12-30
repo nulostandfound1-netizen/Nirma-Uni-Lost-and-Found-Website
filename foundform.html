@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Found Item | Nirma</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=BBH+Hegarty&family=Basic&family=DM+Serif+Text:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, white, rgb(199, 198, 198));
+            background-image: url(lost.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .top {
+            width: 100vw;
+            height: 10vh;
+            background-color: rgba(255, 255, 255, 0.877);
+            display: grid;
+            grid-template-columns: 6fr repeat(3, 0.7fr);
+            align-items: center;
+            justify-items: center;
+            box-shadow: 5px 0px 10px rgba(65, 65, 65, 0.859);
+        }
+
+        .uni {
+            font-weight: 900;
+            color: red;
+            font-size: 1.7vw;
+        }
+
+        .head {
+            font-weight: 700;
+            color: black;
+            font-size: 1.4vw;
+        }
+
+        .text {
+            height: 100%;
+            width: 25%;
+            text-align: center;
+            justify-content: center;
+            transform: translate(-29vw, 1vh);
+        }
+
+        #logout,
+        .back {
+            padding: 8px 20px;
+            border: 2px solid gray;
+            border-radius: 10px;
+            background-color: #e1e1e1;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+            width: 4vw;
+            font-size: 1.2vw;
+        }
+
+        #logout:hover,
+        .back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .table {
+            margin: 2vw 0vw;
+            height: 33vh;
+            width: 70vw;
+            transform: translateX(3vw);
+        }
+
+        .content {
+            width: 45vw;
+            font-size: 1.35vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            padding: 0.7vw;
+            background-color: rgba(255, 255, 255, 0.76);
+            border-radius: 25px;
+            border: 4px solid grey;
+        }
+
+        label {
+            font-size: 1.18vw;
+            font-weight: 600;
+        }
+
+        .submitbtn {
+            height: 5vh;
+            width: 8vw;
+            font-size: 1.2vw;
+            font-weight: 600;
+            border-radius: 10px;
+            border: 2px solid grey;
+            background-color: rgb(200, 200, 200);
+            margin-top: 1vh;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            transition: all 0.2s ease;
+        }
+
+        input {
+            height: 4vh;
+            width: 15vw;
+            font-size: 1vw;
+            transform: all 0.3s ease;
+        }
+
+        textarea {
+            height: 8vh;
+            width: 15vw;
+        }
+
+        .submitbtn:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        .bottom {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile {
+            width: 3.5vw;
+            height: 3.5vw;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        .icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none;
+            color: initial;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // Initialize EmailJS
+            emailjs.init("pkJv5E2jwmXpesDTF");
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="top">
+        <div class="text">
+            <h1 class="uni">Nirma University</h1>
+            <h2 class="head">Lost and Found</h2>
+        </div>
+        <div class="back">
+            <a href="homepage.html">←Back</a>
+        </div>
+        <div id="logout">
+            Logout
+        </div>
+        <div class="profile">
+            <a href="profile2.html"><img class="icon" id="userProfilePic" height="45vh"
+                    onerror="this.src='https:\/\/www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2558760599.jpg'">
+            </a>
+        </div>
+    </div>
+    <div class="bottom">
+        <fieldset class="content">
+            <h1>Register Found Item</h1>
+            <form id="foundForm">
+                <table cellspacing="10" class="table">
+                    <tr>
+                        <td>
+                            <label for="Founder">Founder Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="Founder" required onblur="validateName()">
+                        </td>
+                        <td>
+                            <label for="Item">Item Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="Item" required onblur="validateItem()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Description">Description:</label>
+                        </td>
+                        <td>
+                            <textarea id="Description" rows="4" cols="30" required style="font-size:2vh;"
+                                onblur="validateDesc()"></textarea>
+                        </td>
+                        <td>
+                            <label for="Date">Date Found: </label>
+                        </td>
+                        <td>
+                            <input type="date" id="Date" required onblur="validateDate()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Location">Location Found: </label>
+                        </td>
+                        <td>
+                            <input type="text" id="Location" required onblur="validateLoc()">
+                        </td>
+                        <td>
+                            <label for="imageUpload">Upload Image:</label>
+                        </td>
+                        <td>
+                            <input type="file" id="imageUpload" accept="image/*" required onblur="validateimg()">
+                        </td>
+                    </tr>
+                </table>
+                <input type="button" id="submitBtn" value="Submit" class="submitbtn">
+                <br>
+            </form>
+        </fieldset>
+    </div>
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+        const genAI = new GoogleGenerativeAI("AIzaSyDpLY1xFHse1xSs3WBEZrmeBNMiBoXjGU8");
+        const genAI1 = new GoogleGenerativeAI("AIzaSyBHhJxUv2sEU3sdM-Q1Zb3rXZtw5yJBRRQ");
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, set, get, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuXnFXE9KtuzoAhcixtMYBcVtHfYs8OFQ",
+            authDomain: "nu-lost-and-found.firebaseapp.com",
+            projectId: "nu-lost-and-found",
+            storageBucket: "nu-lost-and-found.firebasestorage.app",
+            messagingSenderId: "905343956080",
+            appId: "1:905343956080:web:90f00a87311987e360b0b5",
+            measurementId: "G-Q7738Y3EQ7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase();
+        const logoutButton = document.getElementById('logout');
+
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                alert("You have been signed out.");
+                window.location.href = "LoginPage.html";
+            }).catch((error) => {
+                console.error("Logout failed", error);
+            });
+        });
+
+        let url;
+        let image = document.getElementById("imageUpload");
+        image.addEventListener("change", e => {
+            const file = image.files[0];
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                url = reader.result;
+            });
+            reader.readAsDataURL(file);
+        });
+
+        async function callGemini1(base64Data, mimeType) {
+            try {
+                const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+                const prompt = `Task: Generate search keywords for a lost and found database.
+                Constraint: Output ONLY a comma-separated string of 5 keywords. 
+                Constraint: No sentences, no introductions, no periods.
+                Example Output: red foldable umbrella, rainy day gear, curved handle umbrella, portable sun shade, red rain protector`;
+
+                const imagePart = {
+                    inlineData: {
+                        data: base64Data.split(',')[1],
+                        mimeType: mimeType
+                    }
+                };
+
+                const result1 = await model.generateContent([prompt, imagePart]);
+                const response1 = await result1.response;
+                const keywordsString1 = response1.text().trim();
+                console.log("Gemini generated:", keywordsString1);
+                return keywordsString1;
+
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                return "N/A";
+            }
+        }
+
+        let storedPic = localStorage.getItem("pic");
+        if (!storedPic || storedPic === "null" || storedPic === "undefined" || storedPic.includes("https://lh3.googleusercontent.com/a/ACg8ocIN6M6AAFv1C8eVRiZ_3ICOxvcDudEk7LUqltmf2pltuUkC=s96-c")) {
+            document.getElementById("userProfilePic").src = "https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2558760599.jpg";
+        } else {
+            document.getElementById("userProfilePic").src = storedPic;
+        }
+
+        window.validateItem = function () {
+            let IName = document.getElementById("Item");
+            if (IName.value.trim() === "") {
+                IName.style.border = "2px solid red"; return false;
+            }
+            else { IName.style.border = "1px solid black"; return true; }
+        }
+        window.validateDesc = function () {
+            let Desc = document.getElementById("Description");
+            if (Desc.value.trim() === "") {
+                Desc.style.border = "2px solid red"; return false;
+            }
+            else { Desc.style.border = "1px solid black"; return true; }
+        }
+        window.validateLoc = function () {
+            let Loc = document.getElementById("Location");
+            if (Loc.value.trim() === "") {
+                Loc.style.border = "2px solid red"; return false;
+            }
+            else { Loc.style.border = "1px solid black"; return true; }
+        }
+        window.validateName = function () {
+            let namePattern = /^[a-zA-Z ]+$/
+            let name = document.getElementById("Founder");
+            if (!namePattern.test(name.value)) {
+                name.style.border = "2px solid red";
+                return false;
+            } else {
+                name.style.border = "1px solid black";
+                return true;
+            }
+        }
+
+        window.validateimg = function () {
+            let imageInput = document.getElementById("imageUpload");
+            const file = imageInput.files[0];
+
+            if (!file) {
+                imageInput.style.border = "2px solid red";
+                return false;
+            } else {
+                imageInput.style.border = "";
+                return true;
+            }
+        }
+
+        window.validateDate = function () {
+            const dateInput = document.getElementById('Date');
+
+            // 1. Properly format today's date for the 'max' attribute (YYYY-MM-DD)
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
+            dateInput.setAttribute('max', todayStr);
+
+            // 2. Get the selected date and set "today" to midnight for comparison
+            const selectedDate = new Date(dateInput.value);
+            const todayMidnight = new Date();
+            todayMidnight.setHours(0, 0, 0, 0);
+            selectedDate.setHours(0, 0, 0, 0);
+
+            // 3. Validation: Only block if selectedDate is strictly GREATER than today
+            if (selectedDate > todayMidnight) {
+                dateInput.style.border = "2px solid red";
+                alert("Future dates are not allowed!");
+                return false;
+            }
+            else if (!dateInput.value) {
+                // Handle empty input case
+                dateInput.style.border = "2px solid red";
+                return false;
+            }
+            else {
+                dateInput.style.border = "1px solid black";
+                return true;
+            }
+        }
+        const submitBtn = document.getElementById("submitBtn");
+
+        submitBtn.addEventListener("click", async () => {
+            const isNameValid = validateName();
+            const isDateValid = validateDate();
+            const isDescValid = validateDesc();
+            const isItemValid = validateItem();
+            const isLocValid = validateLoc();
+            const isImgValid = validateimg();
+
+            if (!isNameValid || !isDateValid || !isDescValid || !isItemValid || !isLocValid || !isImgValid) {
+                alert("Please correct the red fields.");
+                return;
+            }
+            // UI Feedback
+            submitBtn.style.backgroundColor = "rgb(215, 208, 0)";
+            submitBtn.value = "Processing...";
+            submitBtn.disabled = true;
+
+            // Gather Data
+            let mail = localStorage.getItem("mail");
+            let safeMail = mail ? mail.split('.').join(',') : "anonymous";
+            let name = document.getElementById("Founder").value;
+            let item = document.getElementById("Item").value;
+            let desc = document.getElementById("Description").value;
+            let date = document.getElementById("Date").value;
+            let place = document.getElementById("Location").value;
+            let now = new Date();
+
+            try {
+                // 1. Generate Keywords (AI)
+                let imageInput = document.getElementById("imageUpload");
+                const file = imageInput.files[0];
+                const aiKeywords = await callGemini1(url, file.type);
+
+                // 2. Save "Found" Item to Firebase
+                await set(ref(db, 'founders/' + safeMail + '/' + item + ' at ' + now), {
+                    name: name,
+                    item: item,
+                    description: desc,
+                    date_found: date,
+                    place_found: place,
+                    image_url: url,
+                    ImgKeywords: aiKeywords,
+                    mail: safeMail,
+                });
+
+                // 3. SEARCH & EMAIL MATCHING SEEKERS
+                console.log("Searching 'Seekers' database for matches...");
+
+                // --- CRITICAL FIX: Searching the 'Seekers' node as shown in your screenshot ---
+                const snapshot = await get(ref(db, 'Seekers/'));
+
+                if (!snapshot.exists()) {
+                    console.log("No 'Seekers' data found.");
+                    alert("✅ Item Registered! (No pending lost requests found)");
+                    window.location.href = "homepage.html";
+                    return;
+                }
+
+                const allSeekers = snapshot.val();
+                let emailSentCount = 0;
+
+                // Loop through structure: Seekers -> UserEmail -> ItemKey -> Data
+                for (let userKey in allSeekers) {
+                    const userItems = allSeekers[userKey];
+
+                    for (let itemKey in userItems) {
+                        const record = userItems[itemKey];
+
+                        // Matching Logic: Check if "Seeker Item" matches "Found Item"
+                        // e.g. If Seeker lost "Wallet" and you found "Brown Wallet" -> MATCH
+                        let lostItemName = (record.item || "").toLowerCase();
+                        let foundItemName = item.toLowerCase();
+
+                        if (lostItemName.includes(foundItemName) || foundItemName.includes(lostItemName)) {
+
+                            // Fix email (comma back to dot)
+                            // Screenshot shows 'mail' field exists in Seeker data
+                            let recipientEmail = record.mail ? record.mail.split(',').join('.') : "";
+
+                            console.log(`MATCH FOUND! Sending email to: ${recipientEmail}`);
+
+                            if (recipientEmail.includes("@")) {
+                                try {
+                                    // --- CRITICAL FIX: Using the Template ID 'wn24axh' from your screenshot ---
+                                    // Make sure to replace 'YOUR_SERVICE_ID' with your actual Service ID (e.g. 'service_xxxx')
+                                    await emailjs.send("service_tx0sere", "template_xp9xim5", {
+                                        email: recipientEmail,  // Matches {{email}} in your template
+                                        name: record.name,      // Matches {{name}}
+                                        item_name: item,        // Matches {{item_name}}
+                                        place_found: place      // Matches {{place_found}}
+                                    });
+                                    console.log("Email sent successfully.");
+                                    emailSentCount++;
+                                } catch (emailErr) {
+                                    console.error("EmailJS Failed:", emailErr);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (emailSentCount > 0) {
+                    alert(`✅ Item Registered! We notified ${emailSentCount} people who lost similar items.`);
+                } else {
+                    alert("✅ Item Registered! (No matching lost items found)");
+                }
+
+                window.location.href = "homepage.html";
+
+            } catch (error) {
+                console.error("Critical Error:", error);
+                alert("Something went wrong. Check console.");
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

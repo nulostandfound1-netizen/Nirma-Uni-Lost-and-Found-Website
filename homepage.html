@@ -1,0 +1,1049 @@
+<html>
+
+<head>
+    <title>Lost/Found|Nirma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=BBH+Hegarty&family=Basic&family=DM+Serif+Text:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #f1f3f4;
+            overflow: hidden;
+        }
+
+        .top {
+            width: 100vw;
+            height: 10vh;
+            background-color: white;
+            display: grid;
+            grid-template-columns: 8fr 1fr 0.8fr;
+            align-items: center;
+            justify-items: center;
+            box-shadow: 5px 0px 10px rgba(65, 65, 65, 0.859);
+        }
+
+        .uni {
+            font-weight: 900;
+            color: red;
+            font-size: 1.7vw;
+        }
+
+        .head {
+            font-weight: 700;
+            color: black;
+            font-size: 1.4vw;
+        }
+
+        .text {
+            height: 100%;
+            width: 25%;
+            text-align: center;
+            justify-content: center;
+            transform: translate(-32vw, 1vh);
+        }
+
+        #logout {
+            background-color: rgb(225, 225, 225);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4vh;
+            width: 15vh;
+            border: 3px solid grey;
+            border-radius: 10px;
+            margin: 0 auto;
+            font-weight: 600;
+            font-size: 1.1vw;
+            transition: all 0.2s ease;
+        }
+
+        .middle {
+            height: 17vh;
+            width: 100vw;
+            display: grid;
+            grid-template-rows: 1fr 1fr 2fr;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .wel {
+            font-size: 2vw;
+            font-weight: 800;
+            color: red;
+            margin-top: 1%;
+        }
+
+        .tag {
+            font-size: 1.5vw;
+            font-weight: 600;
+            color: rgb(87, 87, 87);
+        }
+
+        .buttons {
+            height: 7vh;
+            width: 80vw;
+            display: flex;
+            gap: 5vw;
+            margin: auto;
+            justify-content: space-evenly;
+            margin-bottom: 8vh;
+        }
+
+        .lost {
+            background-color: red;
+            color: white;
+            width: 14vw;
+            height: 6vh;
+            font-size: 1.13vw;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid red;
+            border-radius: 5px;
+            margin: 0 auto;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .found {
+            background-color: white;
+            color: red;
+            width: 14vw;
+            height: 6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid red;
+            border-radius: 5px;
+            font-size: 1.13vw;
+            font-weight: 800;
+            margin: 0 auto;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .lost:hover {
+            scale: 1.02;
+            translate: 0px -3px;
+            cursor: pointer;
+            box-shadow: 0px 4px 5px rgb(63, 63, 63);
+        }
+
+        .found:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        #logout:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        table {
+            height: 28%;
+        }
+
+        #userProfilePic {
+            border-radius: 50%;
+        }
+
+        .bottom {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            height: 49vh;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            /* CHANGED: Use Flexbox to manage vertical space */
+            display: flex;
+            flex-direction: column;
+            margin-left: 2%;
+            margin-right: 2%;
+            overflow: hidden;
+            /* Ensures nothing spills out of the grey box */
+        }
+
+
+        /* Update your existing table styles or add this to limit text height */
+        td h3.con {
+            font-size: 0.9vw;
+            /* CHANGED: Allow text to wrap normally */
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 1.4;
+            /* Improve readability for 50 words */
+            text-align: left;
+        }
+
+        .bottom2 {
+            width: 98%;
+            margin: 0 auto;
+            /* CHANGED: flex: 1 makes it take up ONLY the remaining space */
+            flex: 1;
+            overflow-y: auto;
+            /* Scroll ONLY this part */
+            scrollbar-width: none;
+
+            display: grid;
+            /* CHANGED: Use auto-fill to make it responsive */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 320px;
+            /* Slightly reduced height to fit better */
+            gap: 15px;
+            /* Add spacing between cards */
+            padding-bottom: 20px;
+            display: none;
+            /* Keep hidden initially */
+        }
+
+        .bottom2,
+        .bottom1 {
+            width: 98%;
+            margin: 0 auto;
+            display: grid;
+            /* CHANGED: Increased height to 520px to fit long text */
+            grid-auto-rows: 480px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            padding-bottom: 20px;
+        }
+
+        .bottom2 {
+            display: none;
+        }
+
+
+        /* Ensure bottom1 is visible by default if needed, or controlled by JS */
+        .bottom1 {
+            display: grid;
+            /* Or whatever your default state is */
+        }
+
+        .img {
+            height: 60%;
+            width: 60%;
+            align-content: center;
+            object-fit: cover;
+        }
+
+        .table {
+            width: 35vw;
+        }
+
+        .OBM:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        .report:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        .con {
+            font-size: 0.87vw;
+        }
+
+        #search {
+            margin-left: 33vw;
+            padding: 2px;
+            width: 31vw;
+            height: 5vh;
+            border: 2px solid black;
+            border-radius: 12px;
+            margin-bottom: 4px;
+        }
+
+        .back {
+            width: 5vw;
+            height: 5vh;
+            background-color: rgb(216, 216, 216);
+            border: 1px solid black;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            align-content: center;
+            margin-left: 0.5vw;
+            display: none;
+        }
+
+        .back:hover {
+            scale: 1.02;
+            translate: 0px -3px;
+            cursor: pointer;
+            box-shadow: 0px 4px 5px rgb(63, 63, 63);
+        }
+
+        a {
+            text-decoration: none;
+            color: initial;
+        }
+
+        /* Add this new style for the link wrapper */
+        .dabba2 a {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            /* Space from bottom */
+            text-decoration: none;
+            /* Removes underline */
+        }
+
+        /* Update your .OBM button style */
+        .OBM {
+            background: white;
+            color: red;
+            border: 2px solid red;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+
+            /* CHANGED: Use fixed height/width instead of %. 
+            This prevents it from squishing. */
+            height: 45px;
+            width: 60%;
+
+            /* Remove margins here since the <a> tag handles alignment now */
+            margin: 0;
+            /* specific for buttons */
+            cursor: pointer;
+        }
+
+        .report {
+            background: red;
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+
+            /* CHANGED: Use fixed height/width instead of %. 
+            This prevents it from squishing. */
+            height: 45px;
+            width: 60%;
+
+            /* Remove margins here since the <a> tag handles alignment now */
+            margin: 0;
+            border: none;
+            /* specific for buttons */
+            cursor: pointer;
+        }
+
+        .BTNS {
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+        }
+
+        #rec {
+            font-size: 2.2vw;
+        }
+
+        .dispute {
+            background-color: red;
+            color: white;
+            font-weight: 600;
+            align-content: center;
+            width: 9vw;
+            height: 5vh;
+            border: none;
+            border-radius: 8px;
+            position: absolute;
+            top: 15%;
+            left: 90%;
+            transform: translate(-50%, -50%);
+            transition: all 0.2s ease;
+            font-size: 1vw;
+        }
+
+        .dispute:hover {
+            scale: 1.02;
+            translate: 0px -3px;
+            cursor: pointer;
+            box-shadow: 0px 4px 5px rgb(63, 63, 63);
+        }
+
+        .submitbtn {
+            border-radius: 13px;
+            width: 3.2vw;
+            height: 5vh;
+            color: white;
+            background-color: red;
+        }
+
+        .dabba2 {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Pushes button to bottom */
+        }
+
+        .dabba {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            /* CHANGED: Remove fixed height. Use flex: 1 to fill space */
+            height: 50vh;
+
+            width: 93%;
+            margin: 0 auto 10px auto;
+            /* Adds space between white card and button */
+            padding: 10px;
+            /* Add padding so text doesn't touch edges */
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            /* Keeps content inside the rounded corners */
+
+            animation: appear linear;
+            animation-timeline: view();
+            animation-range: entry 0% cover 40%;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                scale: 0.5;
+            }
+
+            to {
+                opacity: 1;
+                scale: 1;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">(function () {
+            // Initialize EmailJS
+            emailjs.init("pkJv5E2jwmXpesDTF");
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="top">
+        <div class="text">
+            <a href="aboutUs.html" decoration=none color=initial>
+                <h1 class="uni" align="margin-left">Nirma University</h1>
+            </a>
+            <a href="aboutUs.html" decoration=none color=initial>
+                <h2 class="head">Lost and Found</h2>
+            </a>
+        </div>
+        <div id="logout">
+            Logout
+        </div>
+        <div class="profile">
+            <a href="profile2.html"> <img class=icon height="45vh" id="userProfilePic"
+                    onerror="this.src='https:\/\/www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2558760599.jpg'"></a>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="wel">
+            Welcome
+        </div>
+        <div class="tag">
+            Reuniting you with what matters...
+        </div>
+    </div>
+    <div class="buttons">
+        <table class=table>
+            <tr>
+                <td>
+                    <div class="lost" onclick="lostForm()">
+                        I Lost Something!!
+                    </div>
+                </td>
+                <td>
+                    <div class="found" onclick="foundForm()">
+                        I Found Something!!
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <a href="dispute.html">
+        <button class="dispute">Disputed Items</button></a>
+    <div class="bot">
+        <input type="text" placeholder="🔎 Search Items Here..." id="search">
+        <button class="submitbtn" onclick="callGemini1()">
+            <i class="fa fa-search" style="font-size:20px;"></i>
+        </button>
+    </div>
+    <br>
+    <div class="bottom">
+
+        <h1 id="rec">Recently Reported Lost Items</h1>
+        <a href="homepage.html">
+            <div class="back"> &lt;- Back</div>
+        </a>
+        <br>
+        <div class="bottom1">
+
+        </div>
+        <div class="bottom2"></div>
+    </div>
+    <script>
+        let storedPic = localStorage.getItem("pic");
+
+        // Check if pic is empty, "null" (string), "undefined", OR that specific broken link
+        if (!storedPic || storedPic === "null" || storedPic === "undefined" || storedPic.includes("https://lh3.googleusercontent.com/a/ACg8ocIN6M6AAFv1C8eVRiZ_3ICOxvcDudEk7LUqltmf2pltuUkC=s96-c")) {
+
+            document.getElementById("userProfilePic").src = "https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2558760599.jpg";
+            console.log("Default Image Set!");
+
+        } else {
+            // If it's a valid image, use it
+            document.getElementById("userProfilePic").src = storedPic;
+        }
+
+
+        function lostForm() {
+            window.location.href = "lostform.html";
+        }
+
+        function foundForm() {
+            window.location.href = "foundform.html";
+        }
+    </script>
+    <script type=module>
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+        // Initialize with your actual API Key
+        const genAI = new GoogleGenerativeAI("AIzaSyC7lfVhAj7SmdhbX_nvafADZELwslAfDfw");
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, set, get, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuXnFXE9KtuzoAhcixtMYBcVtHfYs8OFQ",
+            authDomain: "nu-lost-and-found.firebaseapp.com",
+            projectId: "nu-lost-and-found",
+            storageBucket: "nu-lost-and-found.firebasestorage.app",
+            messagingSenderId: "905343956080",
+            appId: "1:905343956080:web:90f00a87311987e360b0b5",
+            measurementId: "G-Q7738Y3EQ7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const logoutButton = document.getElementById('logout');
+
+        // Add the click event listener
+        logoutButton.addEventListener('click', () => {
+
+            signOut(auth)
+                .then(() => {
+                    // Success: What happens after they are logged out?
+                    alert("You have been signed out.");
+                    window.location.href = "LoginPage.html"; // Redirect to login page
+                })
+                .catch((error) => {
+                    // Error: If something goes wrong
+                    console.error("Logout failed", error);
+                });
+        });
+
+        const db = getDatabase();
+        const userData = ref(db, 'Seekers');
+
+        let nameArr = [];
+        let urlArr = [];
+        let itemArr = [];
+        let descArr = [];
+        let dateArr = [];
+        let placeArr = [];
+        let keywords = [];
+        let emailArr = [];
+        let mails = [];
+        let clicked = [];
+        let index;
+
+        get(userData).then((snapshot) => {
+            let i = 0;
+            if (snapshot.exists()) {
+
+                snapshot.forEach((userSnapshot) => {
+                    // This goes inside each email folder
+                    userSnapshot.forEach((itemSnapshot) => {
+                        const data = itemSnapshot.val();
+
+                        // 1. Capture Data
+                        nameArr.push(data.name);
+                        urlArr.push(data.image_url);
+                        itemArr.push(data.item);
+                        descArr.push(data.description);
+                        dateArr.push(data.date_found);
+                        placeArr.push(data.place_found);
+                        keywords.push(data.ImgKeywords);
+                        if (data.marks != "0") mails.push(data.marks);
+                        clicked[i] = 0;
+
+                        // 2. Capture Email (The folder name)
+                        let safeMail = userSnapshot.key.replaceAll(',', '.');
+                        emailArr.push(safeMail);
+
+
+                        // 3. Grid Logic (Increments AFTER we use the data)
+                        i++;
+                        if (i % 4 == 0) {
+                            document.querySelector(".bottom1").style.grid_template_rows = "repeat(" + ((i / 4) + 1) + ", 350px)";
+                        }
+
+                        // 4. Generate HTML
+                        // FIX: Use 'safeMail' directly here. Do NOT use emailArr[i].
+                        // Inside your snapshot.forEach loop
+                        // 
+                        document.querySelector(".bottom1").innerHTML += `
+<div class=dabba2>
+    <div class="dabba">
+        <img src="${data.image_url}" class="img" align="center">
+        <table>
+            <tr>
+                <td><h2 align="left" class="con">Item Name : </h2></td>
+                <td><h2 align="left" class="con">${data.item}</h2></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con">Seeker's Name :</h3></td>
+                <td><h3 align="left" class="con">${data.name}</h3></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con"> Description :</h3></td>
+                <td><h3 align="left" class="con"> ${data.description}</h3></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con"> Date Lost :</h3></td>
+                <td><h3 align="left" class="con"> ${data.date_found} </h3></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con"> Lost at :</h3></td>
+                <td><h3 align="left" class="con"> ${data.place_found} </h3></td>
+            </tr>
+        </table>
+    </div>
+    <div class="BTNS">
+        <button class="OBM" align="center" onclick="handleFoundByMe('${safeMail}', '${data.item.replace(/'/g, "\\'")}', this, 'LOST', '${data.name}')">Found By Me</button>
+      <a href = "mailto:nirmaunilostandfound@gmail.com" > <button class="report">Report</button></a>
+    </div>
+</div>`;
+                        index = document.querySelector(".OBM").dataset.value;
+                        console.log(i);
+                    });
+                });
+            } else {
+                console.log("No data available at 'seekers'");
+            }
+        });
+
+        const userData1 = ref(db, 'founders');
+
+        let nameArr1 = [];
+        let urlArr1 = [];
+        let itemArr1 = [];
+        let descArr1 = [];
+        let dateArr1 = [];
+        let placeArr1 = [];
+        let keywords1 = [];
+        let emailArr1 = [];
+
+        get(userData1).then((snapshot) => {
+            let j = 0;
+            if (snapshot.exists()) {
+
+                snapshot.forEach((userSnapshot) => {
+                    // This goes inside each email folder (e.g., manasmashru135@gmail,com)
+                    userSnapshot.forEach((itemSnapshot) => {
+                        const data = itemSnapshot.val();
+
+                        nameArr1.push(data.name);
+                        urlArr1.push(data.image_url);
+                        itemArr1.push(data.item);
+                        descArr1.push(data.description);
+                        dateArr1.push(data.date_found);
+                        placeArr1.push(data.place_found);
+                        keywords1.push(data.ImgKeywords);
+                        let safeMail = userSnapshot.key.replaceAll(',', '.');
+                        emailArr1.push(safeMail);
+                    });
+                });
+            }
+        });
+
+        // --- NEW FUNCTION: RECORDS THE CLICK IN FIREBASE ---
+        window.recordInterest = async function (index, type) {
+            try {
+                // 1. Get the Person Who Clicked (You)
+                let clickerMail = localStorage.getItem("mail");
+                if (!clickerMail) {
+                    console.warn("User not logged in");
+                    return;
+                }
+
+                // 2. Find the Item Owner and Item Name
+                let ownerMail, itemName;
+
+                // Check which list the item belongs to
+                if (type === 'lost') {
+                    // It's from the "Lost" list
+                    ownerMail = emailArr[index];
+                    itemName = itemArr[index];
+                } else {
+                    // It's from the "Found" list
+                    ownerMail = emailArr1[index];
+                    itemName = itemArr1[index];
+                }
+
+                if (!ownerMail || !itemName) return;
+                if (ownerMail != clickerMail) {
+                    // 3. Prepare Database Keys (Firebase keys cannot have '.', must use ',')
+                    // We convert them back to commas for storage
+                    let safeOwnerKey = ownerMail.replaceAll('.', ',');
+                    let safeClickerKey = clickerMail.replaceAll('.', ',');
+
+                    // 4. Save to "Interactions" Node
+                    // Structure: Interactions -> OwnerEmail -> ItemName -> ClickerEmail -> Date
+                    const now = new Date().toString();
+                    await set(ref(db, 'Interactions/' + safeOwnerKey + '/' + itemName + '/' + safeClickerKey), {
+                        status: "Interested/Contacted",
+                        timestamp: now
+                    });
+
+                    console.log("Interest recorded in database for:", itemName);
+                } else {
+                    alert("You cannot mark your own item!!!");
+                }
+            } catch (error) {
+                console.error("Failed to record interest:", error);
+            }
+        }
+
+        const events = ['click', 'keydown'];
+        let markBtn = document.getElementById("search");
+        events.forEach(evt =>
+            markBtn.addEventListener(evt, (e) => {
+                // Only trigger on 'keydown' if it's the Enter key
+                if (evt === 'keydown' && e.key !== 'Enter') return;
+
+                callGemini1();
+            })
+        );
+        async function callGemini1() {
+            try {
+                const searchVal = document.getElementById("search").value;
+                if (!searchVal) return;
+
+                console.log("Searching for:", searchVal);
+
+                const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+
+                // --- STEP 1: Prepare Inventory ---
+                let inventory = [];
+                for (let i = 0; i < itemArr.length; i++) {
+                    inventory.push({
+                        id: i,
+                        type: "lost",
+                        itemName: itemArr[i],
+                        keywords: keywords[i] || "",
+                        desc: descArr[i]
+                    });
+                }
+
+                let inventory2 = [];
+                for (let j = 0; j < itemArr1.length; j++) {
+                    inventory2.push({
+                        id: j,
+                        type: "found",
+                        itemName: itemArr1[j],
+                        keywords: keywords1[j] || "",
+                        desc: descArr1[j]
+                    });
+                }
+
+                // --- STEP 2: Prompt ---
+                const prompt = `
+            I have two lists: "Lost Items" and "Found Items". 
+            User Search Query: "${searchVal}"
+
+            Task: Return a JSON array of OBJECTS for items that match the query from BOTH lists.
+            CRITICAL: You MUST return the "type" exactly as provided in the inventory ("lost" or "found").
+            Format: [{"id": 12, "type": "lost", "itemName": "Wallet"}, {"id": 3, "type": "found", "itemName": "Keys"}]
+            
+            - Return ONLY the JSON array.
+            - If no matches, return [].
+
+            Inventory List (Lost):
+            ${JSON.stringify(inventory)}
+            
+            Inventory List (Found):
+            ${JSON.stringify(inventory2)}
+        `;
+
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                let text = response.text().trim();
+                text = text.replace(/```json|```/g, '').trim();
+                const matches = JSON.parse(text);
+
+                console.log("Matches found:", matches);
+
+                // --- STEP 3: Setup UI ---
+                let bottomDiv = document.querySelector(".bottom1");
+                let bottom2Div = document.querySelector(".bottom2");
+                let backbtn = document.querySelector(".back");
+                let recItem = document.getElementById("rec");
+
+                if (matches.length > 0) {
+                    bottomDiv.style.display = "none";
+                    bottom2Div.style.display = "grid";
+                    backbtn.style.display = "block";
+                    bottom2Div.innerHTML = "";
+                    recItem.innerHTML = "Search Results";
+
+                    matches.forEach((match) => {
+                        const i = match.id;
+                        let currentUrl, currentItem, currentName, currentDesc, currentDate, currentPlace, currentMail;
+
+                        // NEW: Variable for button text
+                        let buttonText = "";
+
+                        if (match.type === "lost") {
+                            // Logic for LOST items
+                            currentUrl = urlArr[i];
+                            currentItem = itemArr[i];
+                            currentName = nameArr[i];
+                            currentDesc = descArr[i];
+                            currentDate = dateArr[i];
+                            currentPlace = placeArr[i];
+                            currentMail = emailArr[i];
+
+                            // If it is LOST, the viewer is the Finder
+                            buttonText = "Found By Me";
+                        } else {
+                            // Logic for FOUND items
+                            currentUrl = urlArr1[i];
+                            currentItem = itemArr1[i];
+                            currentName = nameArr1[i];
+                            currentDesc = descArr1[i];
+                            currentDate = dateArr1[i];
+                            currentPlace = placeArr1[i];
+                            currentMail = emailArr1[i];
+
+                            // If it is FOUND, the viewer is the Owner
+                            buttonText = "Owned By Me";
+                        }
+
+                        // Render with dynamic Button Text
+                        // Render with dynamic Button Text
+                        bottom2Div.innerHTML += `
+<div class="dabba2">
+    <div class="dabba">
+        <img src="${currentUrl}" class="img" align="center">
+        <table>
+            <tr>
+                <td><h2 align="left" class="con">Item Name : </h2></td>
+                <td><h2 align="left" class="con">${currentItem}</h2></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con">Seeker/Finder :</h3></td>
+                <td><h3 align="left" class="con">${currentName}</h3></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con"> Description :</h3></td>
+                <td><h3 align="left" class="con"> ${currentDesc}</h3></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con"> Date :</h3></td>
+                <td><h3 align="left" class="con"> ${currentDate} </h3></td>
+            </tr>
+            <tr>
+                <td><h3 align="left" class="con"> Location :</h3></td>
+                <td><h3 align="left" class="con"> ${currentPlace} </h3></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" style="padding-top:10px;">
+                    <span style="background:${match.type === 'lost' ? 'red' : 'green'}; color:white; padding:4px 8px; border-radius:5px; font-size:0.8em;">
+                        ${match.type.toUpperCase()}
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="BTNS">
+        <button class="OBM" onclick="handleFoundByMe('${currentMail}', '${currentItem}', this, '${match.type.toUpperCase()}')">
+            ${buttonText}
+        </button>
+        <a href="mailto:nulostandfound1@gmail.com">
+            <button class="report">Report</button>
+        </a>
+    </div>
+</div>`;
+                    });
+
+                    alert(`Found ${matches.length} matches!`);
+
+
+                } else {
+                    alert("No matches found.");
+                    bottomDiv.style.display = "grid";
+                    bottom2Div.style.display = "none";
+                    recItem.innerHTML = "Recently Reported Lost Items";
+                }
+
+            } catch (error) {
+                console.error("Gemini Search Error:", error);
+                alert("Search failed. Check console.");
+            }
+        }
+        // Expose to HTML
+        window.callGemini1 = callGemini1;
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        window.handleFoundByMe = async function (ownerEmail, itemName, btnElement, some, name) {
+            console.log("--- Button Clicked ---");
+
+            // 1. Disable button immediately
+            btnElement.disabled = true;
+            const originalText = btnElement.innerText;
+            btnElement.innerText = "Checking...";
+
+            // 2. Get Current User
+            let clickerEmail = localStorage.getItem("mail");
+
+            if (!clickerEmail) {
+                alert("Please log in first!");
+                btnElement.disabled = false;
+                btnElement.innerText = originalText;
+                return;
+            }
+
+            // 3. Normalize Strings
+            const me = clickerEmail.trim().toLowerCase();
+            const owner = ownerEmail.trim().toLowerCase();
+
+            // 4. Self-Check
+            if (me === owner) {
+                alert("🚫 You cannot mark your own item!");
+                btnElement.innerText = originalText;
+                btnElement.disabled = false;
+                return false;
+            }
+
+            // Format keys for Firebase
+            const safeOwner = ownerEmail.replaceAll('.', ',');
+            const safeClicker = clickerEmail.replaceAll('.', ',');
+            const safeItem = itemName.replaceAll('.', ',');
+
+            if (some == "FOUND") {
+                // --- NEW LOGIC START ---
+
+                // Define the specific path for THIS item in Interactions
+                const itemRef = ref(db, `Interactions/${safeOwner}/${safeItem}`);
+
+                // 1. CHECK DATABASE FIRST (Don't write yet)
+                get(itemRef).then(async (snapshot) => {
+
+                    if (snapshot.exists()) {
+                        // --- SCENARIO 1: SOMEONE IS ALREADY HERE (DISPUTE) ---
+
+                        // Get the email of the person who is already there
+                        let existingClaimants = Object.keys(snapshot.val());
+                        let firstClaimant = existingClaimants[0].replaceAll(',', '.');
+
+                        // Ask for Confirmation BEFORE writing to DB
+                        if (confirm(`⚠️ DISPUTE DETECTED!\n\nThis item has already been claimed by: ${firstClaimant}\n\nClick OK to formally dispute this claim (Admins will be notified).\nClick CANCEL to abort.`)) {
+
+                            // --- USER CLICKED OK: NOW WE WRITE TO DB ---
+
+                            // A. Add the new user (the Disputer) to the database
+                            await set(ref(db, `Interactions/${safeOwner}/${safeItem}/${safeClicker}`), {
+                                time: new Date().toLocaleString(),
+                                status: some + " Reported (Dispute)"
+                            });
+
+                            // B. Send Emails
+                            let mailText = "This mail has been sent because an item you marked as yours has been disputed.";
+
+                            // Email to Previous Claimant
+                            emailjs.send("service_tx0sere", "template_cj3ux55", {
+                                email: firstClaimant,
+                                name: "Student",
+                                mail: mailText,
+                                item: itemName,
+                            });
+
+                            // Email to Finder (Owner of record)
+                            emailjs.send("service_tx0sere", "template_cj3ux55", {
+                                email: ownerEmail,
+                                name: "Finder",
+                                mail: "Multiple people have claimed the item you found. Please check 'Disputed Items'.",
+                                item: itemName,
+                            });
+
+                            // Email to You (Current Clicker)
+                            emailjs.send("service_tx0sere", "template_cj3ux55", {
+                                email: clickerEmail,
+                                name: "Student",
+                                mail: "You have successfully registered a dispute.",
+                                item: itemName,
+                            });
+
+                            alert("Dispute registered successfully. Check your email.");
+                            btnElement.innerText = "Disputed";
+                        } else {
+                            // --- USER CLICKED CANCEL ---
+                            // Do NOTHING. Do not write to DB.
+                            alert("Action Cancelled.");
+                            btnElement.innerText = originalText;
+                            btnElement.disabled = false;
+                        }
+
+                    } else {
+                        // --- SCENARIO 2: NO ONE IS HERE (FIRST CLAIMANT) ---
+
+                        // It is safe to write immediately
+                        await set(ref(db, `Interactions/${safeOwner}/${safeItem}/${safeClicker}`), {
+                            time: new Date().toLocaleString(),
+                            status: some + " Reported"
+                        });
+
+                        alert("Item marked as 'Owned by Me'. The finder has been notified via email.");
+                        btnElement.innerText = "Success";
+
+                        // Open Email Client
+                        window.location.href = `mailto:${ownerEmail}?subject=Regarding Item: ${itemName}`;
+                    }
+                });
+
+            } else {
+                // Logic for "LOST" items (Reporting a found item to a seeker)
+                window.location.href = `mailto:${ownerEmail}?subject=Regarding Item: ${itemName}`;
+                btnElement.innerText = originalText;
+                btnElement.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

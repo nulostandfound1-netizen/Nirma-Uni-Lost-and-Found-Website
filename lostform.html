@@ -1,0 +1,722 @@
+<html>
+<head>
+    <title>Register Found Item | Nirma</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=BBH+Hegarty&family=Basic&family=DM+Serif+Text:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, white, rgb(199, 198, 198));
+            background-image: url(lost.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .top {
+            width: 100vw;
+            height: 10vh;
+            background-color: rgba(255, 255, 255, 0.877);
+            display: grid;
+            grid-template-columns: 6fr repeat(3, 0.7fr);
+            align-items: center;
+            justify-items: center;
+            box-shadow: 5px 0px 10px rgba(65, 65, 65, 0.859);
+        }
+
+        .uni {
+            font-weight: 900;
+            color: red;
+            font-size: 1.7vw;
+        }
+
+        .head {
+            font-weight: 700;
+            color: black;
+            font-size: 1.4vw;
+        }
+
+        .text {
+            height: 100%;
+            width: 25%;
+            text-align: center;
+            justify-content: center;
+            transform: translate(-29vw, 1vh);
+        }
+
+        #logout,
+        .back {
+            padding: 8px 20px;
+            border: 2px solid gray;
+            border-radius: 10px;
+            background-color: #e1e1e1;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+            width: 4vw;
+            font-size: 1.2vw;
+        }
+
+        #logout:hover,
+        .back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .table {
+            margin: 2vw 0vw;
+            height: 33vh;
+            width: 70vw;
+            transform: translateX(3vw);
+            /* display: none; */
+        }
+
+        .content {
+            width: 65vw;
+            height: 56vh;
+            font-size: 1.35vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            padding: 0.7vw;
+            background-color: rgba(255, 255, 255, 0.76);
+            border-radius: 25px;
+            border: 4px solid grey;
+        }
+
+        label {
+            font-size: 1.18vw;
+            font-weight: 600;
+        }
+
+        .submitbtn {
+            height: 5vh;
+            width: 8vw;
+            font-size: 1.2vw;
+            font-weight: 600;
+            border-radius: 10px;
+            border: 2px solid grey;
+            background-color: rgb(200, 200, 200);
+            margin-top: 1vh;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            transition: all 0.2s ease;
+        }
+
+        input {
+            height: 4vh;
+            width: 15vw;
+            font-size: 1vw;
+            transform: all 0.3s ease;
+        }
+
+        textarea {
+            height: 8vh;
+            width: 15vw;
+        }
+
+        #submitBtn:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        .bottom {
+            height: 90vh;
+            /* width: 70vw; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile {
+            width: 3.5vw;
+            height: 3.5vw;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        .icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none;
+            color: initial;
+        }
+
+        .submitbtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #submitBtn1 {
+            display: none;
+            text-align: center;
+            justify-content: center;
+            height: 62vh;
+            width: 75vw;
+            /* display: grid; */
+            grid-template-columns: repeat(4, 23%);
+            grid-template-rows: repeat(1, 60%);
+            padding-top: 2vw;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+
+        .dabba2 {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Pushes button to bottom */
+        }
+
+        .dabba {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            /* CHANGED: Remove fixed height. Use flex: 1 to fill space */
+            height: 85%;
+
+            width: 95%;
+            margin: 0 auto 10px auto;
+            /* Adds space between white card and button */
+            padding: 10px;
+            /* Add padding so text doesn't touch edges */
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            /* Keeps content inside the rounded corners */
+        }
+
+        .dabba2 a {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            /* Space from bottom */
+            text-decoration: none;
+            /* Removes underline */
+        }
+
+        .con {
+            font-size: 0.87vw;
+        }
+
+        /* Update your .OBM button style */
+        .OBM {
+            background: white;
+            color: red;
+            border: 2px solid red;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+
+            /* CHANGED: Use fixed height/width instead of %. 
+            This prevents it from squishing. */
+            height: 45px;
+            width: 60%;
+
+            /* Remove margins here since the <a> tag handles alignment now */
+            margin: 0;
+            /* specific for buttons */
+            cursor: pointer;
+        }
+
+        .report {
+            background: red;
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+
+            /* CHANGED: Use fixed height/width instead of %. 
+            This prevents it from squishing. */
+            height: 45px;
+            width: 60%;
+
+            /* Remove margins here since the <a> tag handles alignment now */
+            margin: 0;
+            border: none;
+            /* specific for buttons */
+            cursor: pointer;
+        }
+
+        .BTNS {
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+        }
+
+        .OBM:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        .report:hover {
+            cursor: pointer;
+            translate: 0px -3px;
+            scale: 1.02;
+            box-shadow: 0px 4px 5px rgb(55, 55, 55);
+        }
+
+        #submitBtn1 {
+            display: none;
+            margin: 0 auto;
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: auto;
+            gap: 20px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            border: 2px solid grey;
+        }
+
+        #submitBtn1 .dabba2 {
+            height: 350px;
+            width: 100%;
+            margin-top: -30px;
+        }
+
+        /* 1. The New Professional Animation */
+        @keyframes modernFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.98);
+                /* Starts slightly lower and smaller */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                /* Snaps into place */
+            }
+        }
+
+        /* 2. Specific Styles for the Heading to kill the gap */
+        #submitBtn1 {
+            display: none;
+            margin: 0 auto;
+            /* CHANGED: Removed justify-content: center (this was pushing content off-screen) */
+            /* CHANGED: Removed grid-template-columns (handled in JS) */
+            grid-auto-rows: max-content; /* Allows rows to fit content height */
+            gap: 20px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            padding: 10px 20px; /* Reduced top padding */
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            border: 2px solid grey;
+            align-items: start; /* Ensures items start at the top */
+        }
+
+        /* REMOVED: #submitBtn1 .dabba2 style with negative margin. 
+           It is no longer needed and causes layout bugs. */
+
+        /* Updated Header Style */
+        .results-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 1.8vw;
+            color: #333;
+            margin-top: 0; /* Reset to 0 to sit at the very top */
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            position: sticky; /* Optional: Keeps header visible while scrolling */
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div class="text">
+            <h1 class="uni">Nirma University</h1>
+            <h2 class="head">Lost and Found</h2>
+        </div>
+        <div class="back">
+            <a href="homepage.html">←Back</a>
+        </div>
+        <div id="logout" id="logoutBtn">
+            Logout
+        </div>
+        <div class="profile">
+            <a href="profile2.html"> <img class="icon" height="45vh" id="userProfilePic"
+                    onerror="this.src='https:\/\/www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2558760599.jpg'"></a>
+        </div>
+    </div>
+    <div class="bottom">
+        <fieldset class="content">
+            <form id="foundForm">
+                <table cellspacing="10" class="table">
+                    <caption>
+                        <h1 style="margin-bottom: 5vh">Register Lost Item</h1>
+                    </caption>
+                    <tr>
+                        <td>
+                            <label for="Seekers">Seeker Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="Seeker" required onblur="validateName()">
+                        </td>
+                        <td>
+                            <label for="Item">Item Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="Item" required onblur="validateItem()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Description">Description:</label>
+                        </td>
+                        <td>
+                            <textarea id="Description" rows="4" cols="30" required style="font-size:2vh;" onblur="validateDesc()"></textarea>
+                        </td>
+                        <td>
+                            <label for="Date">Date Lost: </label>
+                        </td>
+                        <td>
+                            <input type="date" id="Date" required onblur="validateDate()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Location">Location Lost <br> (optional): </label>
+                        </td>
+                        <td>
+                            <input type="text" id="Location">
+                        </td>
+                        <td>
+                            <label for="imageUpload">Upload Image <br> (optional):</label>
+                        </td>
+                        <td>
+                            <input type="file" id="imageUpload" accept="image/*">
+                        </td>
+                    </tr>
+                </table>
+                <div type="button" id="submitBtn1" value="Submit" class="submitbtn">
+                    <div class=boxes>
+
+                    </div>
+                </div>
+                <button type="button" id="submitBtn" value="Submit" class="submitbtn">Submit</button>
+                <br>
+            </form>
+        </fieldset>
+    </div>
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+        const genAI = new GoogleGenerativeAI("AIzaSyCrPgH205ARlcVx1qgyy8W6vmSLzP7lxrs");
+        const genAI1 = new GoogleGenerativeAI("AIzaSyCrPgH205ARlcVx1qgyy8W6vmSLzP7lxrs");
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, set, get, ref } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuXnFXE9KtuzoAhcixtMYBcVtHfYs8OFQ",
+            authDomain: "nu-lost-and-found.firebaseapp.com",
+            projectId: "nu-lost-and-found",
+            storageBucket: "nu-lost-and-found.firebasestorage.app",
+            messagingSenderId: "905343956080",
+            appId: "1:905343956080:web:90f00a87311987e360b0b5",
+            measurementId: "G-Q7738Y3EQ7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase();
+
+        // --- Logout Logic ---
+        const logoutButton = document.getElementById('logout');
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                alert("You have been signed out.");
+                window.location.href = "LoginPage.html";
+            }).catch((error) => console.error("Logout failed", error));
+        });
+
+        // --- Image Preview ---
+        let url;
+        let image = document.getElementById("imageUpload");
+        image.addEventListener("change", e => {
+            const file = image.files[0];
+            const reader = new FileReader();
+            reader.addEventListener("load", () => { url = reader.result; });
+            reader.readAsDataURL(file);
+        });
+
+        // --- Fetch "Found" Items (Inventory) ---
+        const userData1 = ref(db, 'founders');
+        let nameArr1 = [], urlArr1 = [], itemArr1 = [], descArr1 = [], dateArr1 = [], placeArr1 = [], keywords1 = [], emailArr1 = [];
+
+        get(userData1).then((snapshot) => {
+            if (snapshot.exists()) {
+                snapshot.forEach((userSnapshot) => {
+                    userSnapshot.forEach((itemSnapshot) => {
+                        const data = itemSnapshot.val();
+                        nameArr1.push(data.name);
+                        urlArr1.push(data.image_url);
+                        itemArr1.push(data.item);
+                        descArr1.push(data.description);
+                        dateArr1.push(data.date_found);
+                        placeArr1.push(data.place_found);
+                        keywords1.push(data.ImgKeywords);
+                        let safeMail = userSnapshot.key.replaceAll(',', '.');
+                        emailArr1.push(safeMail);
+                    });
+                });
+            }
+        });
+
+        // --- Function 1: Generate Keywords (for Upload) ---
+        const prompt = `Task: Generate search keywords. Output ONLY a comma-separated string of 5 keywords.`;
+        async function callGemini1(base64Data, mimeType) {
+            try {
+                const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+                const imagePart = { inlineData: { data: base64Data.split(',')[1], mimeType: mimeType } }
+                const result1 = await model.generateContent([prompt, imagePart]);
+                const response1 = await result1.response;
+                return response1.text().trim();
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                return "N/A";
+            }
+        }
+
+        // --- Function 2: Search for Matches (The Pop-up Logic) ---
+        // --- Function 2: Search for Matches (The Pop-up Logic) ---
+        async function callGemini2(item, desc, aiKeywords) {
+            try {
+                console.log("Starting Gemini Search...");
+
+                // 1. Prepare Inventory
+                let inventory = [];
+                if (typeof itemArr1 !== 'undefined') {
+                    for (let i = 0; i < itemArr1.length; i++) {
+                        inventory.push({
+                            id: i,
+                            type: "found",
+                            itemName: itemArr1[i],
+                            keywords: keywords1[i] || "",
+                            desc: descArr1[i]
+                        });
+                    }
+                }
+
+                const model = genAI1.getGenerativeModel({ model: "gemini-flash-latest" });
+                const searchPrompt = `
+            User Lost Item: "${item} - ${desc} - ${aiKeywords}"
+            Task: Check the Inventory. Return JSON array of matching objects.
+            Format: [{"id": 3, "type": "found", "itemName": "Keys"}]
+            Inventory: ${JSON.stringify(inventory)}
+        `;
+
+                const result = await model.generateContent(searchPrompt);
+                const response = await result.response;
+                let text = response.text().trim().replace(/```json|```/g, '').trim();
+
+                let matches = [];
+                try { matches = JSON.parse(text); } catch (e) { console.error("JSON Parse Error"); }
+
+                if (matches.length > 0) {
+                    // --- UI UPDATE ---
+
+                    // 1. Hide Form
+                    document.querySelector(".table").style.display = "none";
+                    document.getElementById("submitBtn").style.display = "none";
+                    document.querySelector("caption").style.display = "none"; // Hide old caption completely
+
+                    // 2. Setup Results Container
+                    const resultsDiv = document.getElementById("submitBtn1");
+
+                    // Reset & Apply Grid
+                    resultsDiv.style.display = "grid";
+                    resultsDiv.style.gridTemplateColumns = "repeat(3, 1fr)";
+
+                    // --- NEW: Professional Animation (0.4s is the sweet spot for UI) ---
+                    resultsDiv.style.animation = "modernFadeIn 0.4s ease-out forwards";
+
+                    // --- NEW: Header with Class for tight spacing ---
+                    resultsDiv.innerHTML = `<h1 class="results-header">Related Items</h1>`;
+
+                    // 3. Inject Cards
+                    matches.forEach((match) => {
+                        const i = match.id;
+                        let currentUrl = urlArr1[i];
+                        let currentItem = itemArr1[i];
+                        let currentName = nameArr1[i];
+                        let currentDesc = descArr1[i];
+                        let currentDate = dateArr1[i];
+                        let currentPlace = placeArr1[i];
+                        let currentMail = emailArr1[i];
+
+                        resultsDiv.innerHTML += `
+                <div class="dabba2">
+                    <div class="dabba">
+                        <img src="${currentUrl}" class="img" style="height:120px; width:auto; object-fit:contain;">
+                        <table style="height:auto; width:100%; margin-top:10px;">
+                            <tr><td><h4 class="con">Item: ${currentItem}</h4></td></tr>
+                            <tr><td><h4 class="con">Finder: ${currentName}</h4></td></tr>
+                            <tr><td><h4 class="con">Desc: ${currentDesc}</h4></td></tr>
+                            <tr><td><h4 class="con">Date: ${currentDate}</h4></td></tr>
+                            <tr><td><h4 class="con">Loc: ${currentPlace}</h4></td></tr>
+                        </table>
+                    </div>
+                    <div class="BTNS" style="display:flex; justify-content:center; gap:10px; margin-top:5px;">
+                        <button class="OBM" onclick="window.location.href='mailto:${currentMail}'">Claim</button>
+                        <a href="mailto:nirmaunilostandfound@gmail.com"><button class="report">Report</button></a>
+                    </div>
+                </div>`;
+                    });
+
+                } else {
+                    alert("Item Registered! No matches found in the database yet.");
+                    window.location.href = "homepage.html";
+                }
+
+            } catch (error) {
+                console.error("Gemini Error:", error);
+                alert("Registered, but AI search failed. Redirecting...");
+                window.location.href = "homepage.html";
+            }
+        }
+
+
+        // --- Main Submit Listener ---
+        const submitBtn = document.getElementById("submitBtn");
+
+        // Profile Pic Logic
+        let storedPic = localStorage.getItem("pic");
+        document.getElementById("userProfilePic").src = storedPic;
+
+        window.validateItem = function () {
+            let IName = document.getElementById("Item");
+            if (IName.value.trim() === "") {
+     IName.style.border = "2px solid red"; return false; 
+        }
+        else { IName.style.border = "1px solid black"; return true; }
+    }
+    window.validateDesc = function () {
+            let Desc = document.getElementById("Description");
+            if (Desc.value.trim() === "") {
+     Desc.style.border = "2px solid red"; return false; 
+        }
+        else { Desc.style.border = "1px solid black"; return true; }
+    }
+        window.validateName = function () {
+            let namePattern = /^[a-zA-Z ]+$/;
+            let name = document.getElementById("Seeker");
+            if (!namePattern.test(name.value)) { name.style.border = "2px solid red"; return false; }
+            else { name.style.border = "1px solid black"; return true; }
+        }
+
+  window.validateDate = function () {
+    const dateInput = document.getElementById('Date');
+    
+    // 1. Properly format today's date for the 'max' attribute (YYYY-MM-DD)
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0]; 
+    dateInput.setAttribute('max', todayStr);
+
+    // 2. Get the selected date and set "today" to midnight for comparison
+    const selectedDate = new Date(dateInput.value);
+    const todayMidnight = new Date();
+    todayMidnight.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    // 3. Validation: Only block if selectedDate is strictly GREATER than today
+    if (selectedDate > todayMidnight) { 
+        dateInput.style.border = "2px solid red"; 
+        alert("Future dates are not allowed!");
+        return false; 
+    } 
+    else if (!dateInput.value) {
+        // Handle empty input case
+        dateInput.style.border = "2px solid red";
+        return false;
+    }
+    else { 
+        dateInput.style.border = "1px solid black"; 
+        return true; 
+    }
+}
+
+        submitBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            const isNameValid = validateName();
+            const isDateValid = validateDate();
+            const isDescValid = validateDesc();
+            const isItemValid = validateItem();
+
+            if (!isNameValid || !isDateValid || !isDescValid || !isItemValid) {
+                alert("Please correct the red fields.");
+                return;
+            }
+
+            // --- Step 1: UI Feedback ---
+            submitBtn.value = "Processing...";
+            submitBtn.disabled = true;
+            submitBtn.style.backgroundColor = "grey";
+
+            // --- Step 2: Gather Data ---
+            let mail = localStorage.getItem("mail") || "unknown@user.com";
+            let safeMail = mail.split('.').join(',');
+            let name = document.getElementById("Seeker").value;
+            let item = document.getElementById("Item").value;
+            let desc = document.getElementById("Description").value;
+            let date = document.getElementById("Date").value;
+            let place = document.getElementById("Location").value || "Not Provided";
+            let now = new Date();
+            let aiKeywords = "";
+
+            // --- Step 3: Upload ---
+            if (image.files && image.files.length > 0) {
+                aiKeywords = await callGemini1(url, image.files[0].type);
+            }
+
+            await set(ref(db, 'Seekers/' + safeMail + '/' + item + ' at ' + now), {
+                name: name, item: item, description: desc,
+                date_found: date, place_found: place,
+                image_url: url || "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg?w=360",
+                ImgKeywords: aiKeywords, mail: safeMail,
+            });
+
+            console.log("Item Saved. Searching for matches...");
+
+            // --- Step 4: Call the Search Function ---
+            await callGemini2(item, desc, aiKeywords);
+        });
+    </script>
+</body>
+
+</html>

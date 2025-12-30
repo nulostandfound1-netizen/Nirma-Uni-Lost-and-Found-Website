@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=BBH+Hegarty&family=DM+Serif+Text:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            user-select: none;
+            background-image: url("loginPage.png");
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .loginBox {
+            height: 55vh;
+            width: 27vw;
+            background-color: rgba(255, 255, 255, 0.885);
+            border: 4px solid black;
+            border-radius: 12px;
+            display: grid;
+            grid-template-rows: 0.5fr 0.5fr 2fr 2fr;
+            align-items: center;
+            justify-items: center;
+            transform: translateX(-23%);
+        }
+
+        .contentBox {
+            height: 200%;
+            width: 70%;
+            transform: translateX(-25%);
+            background-color: rgba(221, 0, 0, 0.626);
+            border-radius: 60%;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            align-items: flex-end;
+            justify-items: flex-start;
+        }
+
+        .uniHeading {
+            color: rgb(228, 0, 0);
+            margin-top: 13%;
+            font-size: 2.4vw;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 900;
+        }
+
+        .lnfHeading {
+            font-size: 1.5vw;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 700;
+        }
+
+        .instructions {
+            color: rgb(103, 103, 103);
+            text-align: center;
+            font-size: 1.2vw;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 500;
+        }
+
+        .loginBtn {
+            height: 30%;
+            width: 68%;
+            margin-top: 12%;
+            background-color: white;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            align-items: center;
+            justify-items: center;
+            border-radius: 18px;
+            border: 3px solid black;
+            transition: all 0.25s ease-in-out;
+            cursor: pointer;
+        }
+
+        .loginBtn:hover {
+            transition: all 0.25s ease-in-out;
+            border: 3px solid transparent;
+            transform: translate(0, -5px) scale(1.01);
+            box-shadow: 0px 3px 6px rgba(38, 38, 38, 0.663);
+            background:
+                linear-gradient(white, white) padding-box,
+                linear-gradient(to right, #dd0000, #fffb00, #07e100, rgb(0, 79, 225)) border-box;
+        }
+
+        .loginBtn:active {
+            transition: all 0.25s ease-in-out;
+            border: 3px solid transparent;
+            transform: translate(0, -4px) scale(1.005);
+            box-shadow: 0px 3px 6px rgba(31, 31, 31, 0.864);
+            background:
+                linear-gradient(white, white) padding-box,
+                linear-gradient(to right, #dd0000, #fffb00, #07e100, rgb(0, 79, 225)) border-box;
+        }
+
+        .googleImg {
+            margin-left: 20%;
+        }
+
+        .loginText {
+            font-size: 1.25vw;
+            margin-right: 11%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .welcomeLine {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 900;
+            transform: translate(20vw, -10vh);
+            font-size: 2.3vw;
+            color: white;
+        }
+
+        .info {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 500;
+            font-size: 1.5vw;
+            color: white;
+            transform: translate(20vw, -88vh);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contentBox">
+        <h1 class=welcomeLine>Nirma University <br> Lost and Found Section</h1>
+        <h2 class=info>
+            A student-developed digital hub for Nirma University<br> that streamlines the lost and found
+            process. <br> It enables the campus community to easily report,<br> track, and recover missing belongings
+            efficiently.
+        </h2>
+    </div>
+    <div class="loginBox">
+        <h1 class="uniHeading">Nirma University</h1>
+        <h2 class="lnfHeading">Lost and Found</h2>
+
+        <div class="loginBtn" id="googleLoginBtn">
+            <img src="googleLogo.png" class="googleImg" height="35px" width="35px">
+            <h2 class="loginText">Login With Google</h2>
+        </div>
+
+        <h3 class="instructions">Please Login Using your Official <br> Nirma University Email ID</h3>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuXnFXE9KtuzoAhcixtMYBcVtHfYs8OFQ",
+            authDomain: "nu-lost-and-found.firebaseapp.com",
+            projectId: "nu-lost-and-found",
+            storageBucket: "nu-lost-and-found.firebasestorage.app",
+            messagingSenderId: "905343956080",
+            appId: "1:905343956080:web:90f00a87311987e360b0b5",
+            measurementId: "G-Q7738Y3EQ7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        const ALLOWED_PERSONAL_EMAIL = "nulostandfound1@gmail.com";
+        const ALLOWED_DOMAIN = "@nirmauni.ac.in";
+
+        // 1. SEPARATE CHECKING FROM SAVING
+        // This function returns true/false only. No side effects.
+        function isUserAllowed(email) {
+            return (email === ALLOWED_PERSONAL_EMAIL || email.endsWith(ALLOWED_DOMAIN));
+        }
+
+        // 2. DEDICATED SAVE FUNCTION
+        // This ensures saving happens explicitly before redirect
+        function saveUserProfile(user) {
+            localStorage.setItem("mail", user.email);
+            localStorage.setItem("name", user.displayName);
+            // FIX: Check if photoURL exists. If not, use a default placeholder.
+            let photo = user.photoURL;
+            if (!photo) {
+                // Use a generic user icon
+                photo = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+            }
+            localStorage.setItem("pic", photo);
+        }
+
+        // 3. SINGLE SOURCE OF TRUTH (The Fix)
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                if (isUserAllowed(user.email)) {
+                    // 1. Save Profile
+                    saveUserProfile(user);
+                    console.log("Data Saved! Check Application Tab -> Local Storage now.");
+
+                    // 2. COMMENT THIS OUT TEMPORARILY
+                    window.location.href = "homepage.html";
+
+                    // 3. Log what is actually in storage
+                    console.log("Stored Name:", localStorage.getItem("name"));
+                    console.log("Stored Email:", localStorage.getItem("mail"));
+                }
+                // ...
+            }
+        });
+
+        // 4. CLEANER BUTTON LOGIC
+        const loginBtn = document.getElementById("googleLoginBtn");
+
+        loginBtn.addEventListener("click", () => {
+            signInWithPopup(auth, provider)
+                .catch((error) => {
+                    // We ONLY handle errors here.
+                    // If login succeeds, onAuthStateChanged (above) handles the rest.
+                    console.error("Login Error:", error);
+                    alert("Login Failed: " + error.message);
+                });
+        });
+
+window.addEventListener('keydown', function(e) {
+    // Check if 'Z' is pressed while Ctrl or Command is held down
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        console.log("Undo action blocked.");
+    }
+});
+// Push a state into the history
+history.pushState(null, null, location.href);
+
+window.onpopstate = function () {
+    // When the user clicks 'Back', we push it right back again
+    alert("Navigation undo is disabled on this page.");
+};
+
+    </script>
+</body>
+
+</html>
