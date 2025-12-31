@@ -434,8 +434,7 @@
     </div>
     <script type="module">
         import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-        const genAI = new GoogleGenerativeAI("AIzaSyDudWyFP8bCf2dyG0hWhDxaDjUqzrtNV3U");
-        const genAI1 = new GoogleGenerativeAI("AIzaSyDFNCAjJa_RBiKCCotnl8KUnj6F9HxQR8M");
+        const genAI = new GoogleGenerativeAI("AIzaSyCvES2NuP3O190d3sT8MDE3fB_40ki-doY");
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, set, get, ref } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -532,7 +531,7 @@
                     }
                 }
 
-                const model = genAI1.getGenerativeModel({ model: "gemini-flash-latest" });
+                const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
                 const searchPrompt = `
             User Lost Item: "${item} - ${desc} - ${aiKeywords}"
             Task: Check the Inventory. Return JSON array of matching objects.
@@ -720,3 +719,4 @@
 </body>
 
 </html>
+
